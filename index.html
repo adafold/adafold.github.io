@@ -187,6 +187,9 @@
       </h2>
     </div>
   </div>
+
+
+
 </section>
 
 <!-- 
@@ -446,51 +449,282 @@
   </div>
   </div>
 
+  <p>
+    These descriptors are extracted at time 0, and tracked over the manipulation using XMeM as pre-trained video object segmentation module. Here we show an example of the output for the upper descriptors of two different objects.
+  </p>
+  <video id="matting-video" controls playsinline height="100%">
+    <source src="./static/videos/Temporal_masks.mp4"
+            type="video/mp4">
+  </video>
+
   </div>
 </div>
 
 
-</div>
+    <!--/ Trajectory Optimization. -->
+    <h3 class="title is-3">Trajectory Optimization</h3>
 
-
-
+  <!-- Two-column layout: Text on the left, Video on the right -->
   <div class="columns is-centered">
-
-    <!-- Visual Effects. -->
-    <div class="column">
-      <div class="content">
-        <h3 class="title is-3">Cloth Perception</h2>
+    <div class="column is-half">
+      <div class="content has-text-justified">
+        <!-- <h3 class="title is-4">Your Title Here</h3> -->
         <p>
-          Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-          would be impossible without nerfies since it would require going through a wall.
+          To optimize the folding trajectory, AdaFold uses sampling-based MPC over a finite horizon H using a learned model of
+the cloth dynamics. Specifically, at each time-step t, AdaFold samples a set of candidate trajectories an and evaluates the trajectory predicted by the model rollout. Only the candidate that minimizes a cost function is executed,
+while the un-executed portion of the optimized trajectory is used to warm-start the optimization at the next time-step.
         </p>
-        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/dollyzoom-stacked.mp4"
-                  type="video/mp4">
-        </video>
+        <p>
+          The cost function is designed to select actions that maximize the alignment between the two halves of the
+          cloth. This alignment is quantitatively assessed using the
+          Intersection over Union (IoU) metric, calculated based on the
+          ratio of the areas occupied by the upper and lower half of the cloth when
+          projected to the folding plane. We additionally incorporate in
+          the cost function a term discouraging actions resulting in large
+          displacements of the cloth. 
+        </p>
       </div>
     </div>
-    <!--/ Visual Effects. -->
-
-    <!-- Matting. -->
-    <div class="column">
-      <h3 class="title is-3">Trajectory Optimization</h2>
-      <div class="columns is-centered">
-        <div class="column content">
-          <p>
-            As a byproduct of our method, we can also solve the matting problem by ignoring
-            samples that fall outside of a bounding box during rendering.
-          </p>
-          <video id="matting-video" controls playsinline height="100%">
-            <source src="./static/videos/matting.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-
-      </div>
+    <div class="column is-half has-text-centered">
+      <video id="your-video-id"
+            muted
+            preload="auto"
+            autoplay
+            loop
+            width="100%">
+        <source src="./static/videos/planning.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>
+Visualization of the trajectory optimization process. 
+      </p>
     </div>
   </div>
 
+  <!-- Three-column layout: Subtitle, Video, and Image in each column -->
+
+  <h3 class="title is-4">Baselines comparison</h3>
+
+  <div class="content has-text-justified">
+  <p>
+    Visualization of the folding trajectory of AdaFold compared to a baseline executing a predefined trajectory, and an ablation of AdaFold where the semantic descriptors of the upper and bottom layer are discarded. 
+    
+          </p>
+
+          <p>
+We present the result on three rectangular cloths with different physical properties.    
+
+                  </p>
+  </div>
+<div class="columns is-centered">
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">Fixed Trajectory</h4>
+    <video id="video-1"
+           controls
+           autoplay
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/fixed_red.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video id="video-1"
+    controls
+    autoplay
+    muted
+    preload="auto"
+    playsinline
+    loop
+    width="100%">
+<source src="./static/videos/fixedBrown.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<video id="video-1"
+controls
+autoplay
+muted
+preload="auto"
+playsinline
+loop
+width="100%">
+<source src="./static/videos/fixedYellow.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<p>
+  Final results:       
+                </p>
+    <img src="./static/images/Fixed.png" alt="Description of image 1" style="width: 100%; margin-top: 10px;">
+  </div>
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">AdaFold - No Descriptors</h4>
+    <video id="video-2"
+           controls
+           autoplay
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/NLRed.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video id="video-2"
+    controls
+    autoplay
+    muted
+    preload="auto"
+    playsinline
+    loop
+    width="100%">
+<source src="./static/videos/NLBrown-.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<video id="video-2"
+controls
+autoplay
+muted
+preload="auto"
+playsinline
+loop
+width="100%">
+<source src="./static/videos/NLYellow.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<p>
+  Final results:       
+                </p>
+    <img src="./static/images/AdaFold_NL.png" alt="Description of image 2" style="width: 100%; margin-top: 10px;">
+  </div>
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">AdaFold</h4>
+    <video id="video-3"
+           controls
+           autoplay
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/AdaRed.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video id="video-3"
+    controls
+    autoplay
+    muted
+    preload="auto"
+    playsinline
+    loop
+    width="100%">
+<source src="./static/videos/AdaBrown.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<video id="video-3"
+controls
+autoplay
+muted
+preload="auto"
+playsinline
+loop
+width="100%">
+<source src="./static/videos/AdaYelow.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+    <!-- <div class="content has-text-justified"> -->
+      <p>
+Final results:       
+              </p>
+    <img src="./static/images/AdaFold.png" alt="Description of image 3" style="width: 100%; margin-top: 10px;">
+  </div>
+</div>
+
+
+  <!-- Generalization to different shapes and objects-->
+
+  <h3 class="title is-4">Generalization to different sizes and objects </h3>
+
+  <div class="content has-text-justified">
+  <p>
+    Visualization of the folding trajectory of AdaFold for objects with different sizes and shapes. Specifically, we test on a rectangular cloth bigger then previous ones,
+    a pair of pants already partially folded to show the generalizability of the method to different stages of the folding process, and on flattened pants to show generalization on different shapes.
+  
+    
+          </p>
+
+  </div>
+<div class="columns is-centered">
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">Bigger cloth</h4>
+    <video id="video-1"
+           controls
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/big.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <img src="./static/images/big.png" alt="Description of image 1" style="width: 100%; margin-top: 10px;">
+  </div>
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">Folded pants</h4>
+    <video id="video-2"
+           controls
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/pants.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <img src="./static/images/pants.png" alt="Description of image 2" style="width: 100%; margin-top: 10px;">
+  </div>
+  <div class="column is-one-third has-text-centered">
+    <h4 class="title is-4">Leg of the pants</h4>
+    <video id="video-3"
+           controls
+           autoplay
+           muted
+           preload="auto"
+           playsinline
+           loop
+           width="100%">
+      <source src="./static/videos/leg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <img src="./static/images/leg.png" alt="Description of image 3" style="width: 100%; margin-top: 10px;">
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{longhini2024adafold,
+  author    = {Longhini, Alberta and Welle, Michael C and Erickson, Zackory and Kragic, Danica},
+  title     = {AdaFold: Adapting Folding Trajectories of Cloths via Feedback-loop Manipulation},
+  journal   = {IEEE Robotics and Automation Letters},
+  year      = {2024},
+  publisher={IEEE}
+}</code></pre>
+  </div>
 </section>
 
 
