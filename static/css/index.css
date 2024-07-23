@@ -155,3 +155,14 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+
+.coming-soon {
+  cursor: not-allowed;
+  opacity: 0.6; /* Makes it look disabled */
+}
+
+/* Optional: Adjust the text color */
+.coming-soon span {
+  color: #999; /* Grey color to indicate unavailability */
+}
