@@ -178,19 +178,18 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
+        <source src="./static/videos/First_Videos.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        AdaFold adapts folding trajectories of cloths with different physical propreties, <br>
+        whitouth knowing the properties in advance.
       </h2>
     </div>
   </div>
 </section>
 
-
+<!-- 
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
@@ -246,7 +245,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
@@ -257,31 +256,25 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            We present AdaFold, a model-based feedback-loop
+            framework for optimizing folding trajectories. 
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+            AdaFold extracts
+            a particle-based representation of cloth from RGB-D images and
+            feeds back the representation to a model predictive control to re-
+            plan folding trajectory at every time-step. A key component of
+            AdaFold that enables feedback-loop manipulation is the use of
+            semantic descriptors extracted from geometric features. These
+            descriptors enhance the particle representation of the cloth
+            to distinguish between ambiguous point clouds of differently
+            folded cloths. 
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            Our experiments demonstrate AdaFold’s ability
+            to adapt folding trajectories of cloths with varying physical
+            properties and generalize from simulated training to real-
+            world execution.
           </p>
         </div>
       </div>
@@ -289,7 +282,7 @@
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
@@ -297,7 +290,7 @@
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Paper video. -->
   </div>
 </section>
@@ -306,52 +299,16 @@
 <section class="section">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
     <!--/ Matting. -->
 
     <!-- Animation. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
+        <h2 class="title is-3">AdaFold</h2> -->
 
         <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
+        <!-- <h3 class="title is-4">Interpolating states</h3> -->
+        <!-- <div class="content has-text-justified">
           <p>
             We can also animate the scene by interpolating the deformation latent codes of two input
             frames. Use the slider here to linearly interpolate between the left frame and the right
@@ -359,13 +316,13 @@
           </p>
         </div>
         <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
+          <div class="column has-text-justified">
             <img src="./static/images/interpolate_start.jpg"
                  class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
+                 alt="Interpolate start reference image."/> -->
+            <!-- <p>Start Frame</p> -->
+          <!-- </div> -->
+          <!-- <div class="column interpolation-video-column">
             <div id="interpolation-image-wrapper">
               Loading...
             </div>
@@ -378,13 +335,13 @@
                  class="interpolation-image"
                  alt="Interpolation end reference image."/>
             <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
+          </div> -->
+        <!-- </div> -->
+        <!-- <br/> -->
         <!--/ Interpolating. -->
 
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
+        <!-- <h3 class="title is-4">Re-rendering the input video</h3>
         <div class="content has-text-justified">
           <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
@@ -401,16 +358,16 @@
             <source src="./static/videos/replay.mp4"
                     type="video/mp4">
           </video>
-        </div>
+        </div> -->
         <!--/ Re-rendering. -->
 
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     <!--/ Animation. -->
 
 
     <!-- Concurrent Work. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
 
@@ -433,29 +390,113 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Concurrent Work. -->
 
+<!-- Method. -->
+<div class="columns is-centered">
+  <div class="column is-full-width">
+    <h2 class="title is-3">AdaFold</h2>
+
+    <!-- Re-rendering. -->
+    <!-- <h3 class="title is-4">AdaFolds decouple the problem of feedback-loop manipulation into cloth perception and trajectory optimization. -->
+      <!-- </h3> -->
+      <div class="content has-text-justified">
+        <p>
+          AdaFold decouples the problem of feedback-loop manipulation into cloth perception and trajectory optimization.
+        </p>
+      </div>
+    <div class="content has-text-centered">
+      <img src="./static/images/method_v11_comp-1.png" 
+           alt="Description of image"
+           style="width: 100%;"/>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        Given a set of pick-and-place positions, AdaFold
+        optimizes the best folding action at each time-step t. RGB-D observations from different calibrated cameras are used to extract point cloud
+        representations with semantic descriptors. The semantic descriptors Upper and Bottom are obtained based on geometric features.
+        The optimal folding action is obtained with MPC, which uses a learned model of the cloth to evaluate the candidate
+        trajectories an (light blue) and update the optimal control sequence (dark blue).
+      </p>
+
+    <!--/ Perception. -->
+    <h3 class="title is-3">Perception</h3>
+
+    <div class="content has-text-justified">
+      <p>
+      Given a cloth in a deformed configuration (a), unstructured 3D representation such as point cloud (b) become ambiguous. AdaFold addresses this limitation by using semantic descriptors (c) to enhance the representation of the cloth.
+      </p>
+    </div>
+  <div class="content has-text-centered">
+    <img src="./static/images/Pointcloud_descritptor.png" 
+         alt="Description of image"
+         style="width: 100%;"/>
   </div>
-</section>
+  <div class="content has-text-justified">
+    <p>
+ These descriptor are extracted from geometic features, which define folding lines identifying the upper and bottom layers of the cloth. These layers can be intended as two specific parts of the cloth, one to be folded over the other, which vary depending on the cloth type and the desired fold.
+    </p>
+
+  </div>
+  <div class="content has-text-centered">
+    <img src="./static/images/Folding_labels.png" 
+         alt="Description of image"
+         style="width: 100%;"/>
+  </div>
+  </div>
+
+  </div>
+</div>
 
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+</div>
+
+
+
+  <div class="columns is-centered">
+
+    <!-- Visual Effects. -->
+    <div class="column">
+      <div class="content">
+        <h3 class="title is-3">Cloth Perception</h2>
+        <p>
+          Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+          would be impossible without nerfies since it would require going through a wall.
+        </p>
+        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/dollyzoom-stacked.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!--/ Visual Effects. -->
+
+    <!-- Matting. -->
+    <div class="column">
+      <h3 class="title is-3">Trajectory Optimization</h2>
+      <div class="columns is-centered">
+        <div class="column content">
+          <p>
+            As a byproduct of our method, we can also solve the matting problem by ignoring
+            samples that fall outside of a bounding box during rendering.
+          </p>
+          <video id="matting-video" controls playsinline height="100%">
+            <source src="./static/videos/matting.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
   </div>
+
 </section>
 
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
+    <!-- <div class="content has-text-centered">
       <a class="icon-link"
          href="./static/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
@@ -463,21 +504,18 @@
       <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
-    </div>
+    </div> -->
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
+          <!-- <p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+          </p> -->
           <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
+            Website template borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
         </div>
       </div>
