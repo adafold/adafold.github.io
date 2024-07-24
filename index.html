@@ -416,11 +416,8 @@
     </div>
     <div class="content has-text-justified">
       <p>
-        Given a set of pick-and-place positions, AdaFold
-        optimizes the best folding action at each time-step t. RGB-D observations from different calibrated cameras are used to extract point cloud
-        representations with semantic descriptors. The semantic descriptors Upper and Bottom are obtained based on geometric features.
-        The optimal folding action is obtained with MPC, which uses a learned model of the cloth to evaluate the candidate
-        trajectories an (light blue) and update the optimal control sequence (dark blue).
+        AdaFold  optimizes the best folding action at each time-step t, given a set of pick-and-place positions. Leveraging RGB-D observations from multiple calibrated cameras, it extracts point cloud representations augmented with semantic descriptors.  These descriptors, Upper and Bottom, are derived from geometric features.
+        The optimal folding action is determined using Model Predictive Control (MPC), which employs a learned model of the cloth to evaluate candidate trajectories (light blue) and update the optimal control sequence (dark blue).
       </p>
 
     <!--/ Perception. -->
@@ -438,7 +435,8 @@
   </div>
   <div class="content has-text-justified">
     <p>
- These descriptor are extracted from geometic features, which define folding lines identifying the upper and bottom layers of the cloth. These layers can be intended as two specific parts of the cloth, one to be folded over the other, which vary depending on the cloth type and the desired fold.
+      The descriptors are derived from geometric features, which define folding lines identifying the upper and bottom layers of the cloth. The layers can be seen as two specific parts of the cloth, one to be folded over the other, varying depending on the cloth type and the desired fold.
+
     </p>
 
   </div>
@@ -450,7 +448,7 @@
   </div>
 
   <p>
-    These descriptors are extracted at time 0, and tracked over the manipulation using XMeM as pre-trained video object segmentation module. Here we show an example of the output for the upper descriptors of two different objects.
+    The descriptors are extracted at time 0, and tracked over the manipulation using XMeM as a pre-trained video object segmentation module. Here we show an example of the output for the upper descriptors of two different objects.
   </p>
   <video id="matting-video" controls playsinline height="100%">
     <source src="./static/videos/Temporal_masks.mp4"
@@ -471,8 +469,8 @@
         <!-- <h3 class="title is-4">Your Title Here</h3> -->
         <p>
           To optimize the folding trajectory, AdaFold uses sampling-based MPC over a finite horizon H using a learned model of
-the cloth dynamics. Specifically, at each time-step t, AdaFold samples a set of candidate trajectories an and evaluates the trajectory predicted by the model rollout. Only the candidate that minimizes a cost function is executed,
-while the un-executed portion of the optimized trajectory is used to warm-start the optimization at the next time-step.
+the cloth dynamics. Specifically, at each time-step t, AdaFold samples a set of candidate trajectories an and evaluates the trajectory predicted by the model rollout. Only the first action of the candidate trajectory that minimizes a cost function is executed.
+The un-executed portion of the trajectory is used to warm-start the optimization at the next time-step.
         </p>
         <p>
           The cost function is designed to select actions that maximize the alignment between the two halves of the
@@ -647,8 +645,8 @@ Final results:
 
   <div class="content has-text-justified">
   <p>
-    Visualization of the folding trajectory of AdaFold for objects with different sizes and shapes. Specifically, we test on a rectangular cloth bigger then previous ones,
-    a pair of pants already partially folded to show the generalizability of the method to different stages of the folding process, and on flattened pants to show generalization on different shapes.
+    Visualization of the folding trajectory of AdaFold for objects with different sizes and shapes. 
+    Specifically, we test on a rectangular cloth larger than previous ones, a pair of pants already partially folded to demonstrate the method's generalizability to different stages of the folding process, and flattened pants to show generalization on different shapes.
   
     
           </p>
@@ -660,6 +658,7 @@ Final results:
     <video id="video-1"
            controls
            muted
+           autoplay
            preload="auto"
            playsinline
            loop
@@ -674,6 +673,7 @@ Final results:
     <video id="video-2"
            controls
            muted
+           autoplay
            preload="auto"
            playsinline
            loop
